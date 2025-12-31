@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Card } from "./ui/card";
 import { Ticket, Sparkles, Minus, Plus, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
-import { TICKETS_SOLD_OUT } from "@/lib/inventory";
+import { TICKETS_SOLD_OUT, BOOKING_COMING_SOON } from "@/lib/inventory";
 
 interface Availability {
   nightKey: string;
@@ -207,6 +207,59 @@ export function TicketFormSection() {
       setLoading(false);
     }
   };
+
+  // If booking is hidden while planning new dates, show coming soon message
+  if (BOOKING_COMING_SOON) {
+    return (
+      <section id="tickets" className="py-20 relative overflow-hidden" style={{ background: '#FFE8F0' }}>
+        {/* Decorative background with candy and cone icons */}
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
+          <div className="absolute top-20 left-10 text-9xl">🎄</div>
+          <div className="absolute bottom-20 right-20 text-9xl">🍦</div>
+          <div className="absolute top-1/2 left-1/4 text-7xl">❄️</div>
+          <div className="absolute top-32 right-16 text-6xl">🎁</div>
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-12 space-y-4">
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#F8AFC8] text-[#1F1B24] rounded-full">
+                <Sparkles className="w-5 h-5" />
+                <span style={{ fontWeight: 700, fontSize: '1.1rem' }}>COMING SOON</span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl" style={{ fontWeight: 800, color: '#1F1B24' }}>
+                New Dates Coming Soon
+              </h2>
+              <p className="text-xl" style={{ color: '#717182' }}>
+                We're planning something special for you
+              </p>
+            </div>
+
+            <Card className="p-8 md:p-10 bg-white shadow-2xl border-2 border-[#F8AFC8]/30">
+              <div className="text-center space-y-6">
+                <div className="text-6xl mb-4">🎬</div>
+
+                <h3 className="text-2xl md:text-3xl" style={{ fontWeight: 700, color: '#1F1B24' }}>
+                  Stay Tuned!
+                </h3>
+
+                <p className="text-lg" style={{ color: '#717182', lineHeight: '1.6' }}>
+                  We're busy planning new movie nights for you. Follow us on social media to be the first to know when tickets go on sale!
+                </p>
+
+                <div className="p-5 rounded-xl mt-6" style={{ background: '#F8AFC8', border: '2px solid #F38DB5' }}>
+                  <p style={{ fontWeight: 600, color: '#1F1B24' }}>
+                    New dates will be announced soon!
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   // If tickets are sold out, show thank you message instead of form
   if (TICKETS_SOLD_OUT) {

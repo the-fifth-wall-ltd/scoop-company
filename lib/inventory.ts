@@ -121,6 +121,9 @@ export const RESERVATION_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
 // Global sold out flag - set to true to disable all ticket sales
 export const TICKETS_SOLD_OUT = false;
 
+// Flag to hide booking while planning new dates - shows "Coming Soon" message
+export const BOOKING_COMING_SOON = true;
+
 // Global sold out flag for Yule Logs - set to true to disable all Yule Log orders
 export const YULE_LOGS_SOLD_OUT = true;
 

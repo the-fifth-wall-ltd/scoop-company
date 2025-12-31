@@ -2,7 +2,7 @@
 
 import { Button } from "./ui/button";
 import { Sparkles } from "lucide-react";
-import { TICKETS_SOLD_OUT } from "@/lib/inventory";
+import { TICKETS_SOLD_OUT, BOOKING_COMING_SOON } from "@/lib/inventory";
 
 export function HeroSection() {
   const scrollToTickets = () => {
@@ -32,7 +32,7 @@ export function HeroSection() {
           <div className="text-center md:text-left space-y-6 relative z-20 order-1">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#1F1B24] rounded-full border-2 border-[#1F1B24]">
               <Sparkles className="w-4 h-4 text-white" />
-              <span className="text-sm text-white font-semibold">{TICKETS_SOLD_OUT ? 'SOLD OUT' : 'Limited Seats Available'}</span>
+              <span className="text-sm text-white font-semibold">{BOOKING_COMING_SOON ? 'NEW DATES COMING SOON' : TICKETS_SOLD_OUT ? 'SOLD OUT' : 'Limited Seats Available'}</span>
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl" style={{ fontWeight: 800, lineHeight: '1.1', color: '#1F1B24' }}>
@@ -46,21 +46,21 @@ export function HeroSection() {
             {/* Ticket CTAs */}
             <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <Button
-                onClick={TICKETS_SOLD_OUT ? undefined : scrollToTickets}
-                disabled={TICKETS_SOLD_OUT}
+                onClick={(TICKETS_SOLD_OUT || BOOKING_COMING_SOON) ? undefined : scrollToTickets}
+                disabled={TICKETS_SOLD_OUT || BOOKING_COMING_SOON}
                 className="w-full sm:w-auto text-base px-6 py-6 rounded-full shadow-lg transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                 style={{ background: '#F8AFC8', color: '#1F1B24', fontWeight: 600 }}
               >
-                🎟️ Kids — £12 <span className="ml-2 opacity-80">{TICKETS_SOLD_OUT ? 'Sold Out' : 'Any dessert + any drink'}</span>
+                🎟️ Kids — £12 <span className="ml-2 opacity-80">{BOOKING_COMING_SOON ? 'Coming Soon' : TICKETS_SOLD_OUT ? 'Sold Out' : 'Any dessert + any drink'}</span>
               </Button>
 
               <Button
-                onClick={TICKETS_SOLD_OUT ? undefined : scrollToTickets}
-                disabled={TICKETS_SOLD_OUT}
+                onClick={(TICKETS_SOLD_OUT || BOOKING_COMING_SOON) ? undefined : scrollToTickets}
+                disabled={TICKETS_SOLD_OUT || BOOKING_COMING_SOON}
                 className="w-full sm:w-auto text-base px-6 py-6 rounded-full shadow-lg transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                 style={{ background: '#F38DB5', color: 'white', fontWeight: 600 }}
               >
-                🎟️ Adults — £12 <span className="ml-2 opacity-90">{TICKETS_SOLD_OUT ? 'Sold Out' : 'Any dessert + any drink'}</span>
+                🎟️ Adults — £12 <span className="ml-2 opacity-90">{BOOKING_COMING_SOON ? 'Coming Soon' : TICKETS_SOLD_OUT ? 'Sold Out' : 'Any dessert + any drink'}</span>
               </Button>
             </div>
           </div>
